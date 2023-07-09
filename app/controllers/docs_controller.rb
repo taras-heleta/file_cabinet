@@ -27,7 +27,16 @@ class DocsController < ApplicationController
   end
 
   def update
+    if @doc.update(doc_params)
+      redirect_to @doc
+    else
+      render 'new'
+    end
+  end
 
+  def destroy
+    @doc.destroy
+    redirect_to docs_path, notice: 'Doc was successfully destroyed.'
   end
 
   private
